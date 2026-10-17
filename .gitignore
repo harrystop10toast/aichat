@@ -1,0 +1,21 @@
+# Build output
+build/
+.gradle/
+out/
+
+# Minecraft run directory (contains API keys, worlds, logs)
+run/
+
+# IDE
+.idea/
+*.iml
+*.ipr
+*.iws
+.vscode/
+
+# OS
+.DS_Store
+**/.DS_Store
+
+# Personal notes
+*.rtf

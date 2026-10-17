@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "id": "aichat",
+  "version": "${version}",
+  "name": "AIChat",
+  "description": "Personal client-side mod: routes !ai <prompt> in Hypixel guild/party/public chat to Gemini or Groq.",
+  "authors": ["you"],
+  "contact": {},
+  "license": "MIT",
+  "environment": "client",
+  "entrypoints": {
+    "client": [
+      "com.geministuff.aichat.AIChatMod"
+    ]
+  },
+  "depends": {
+    "fabricloader": ">=0.18.4",
+    "fabric-api": "*",
+    "minecraft": "26.1.2"
+  }
+}

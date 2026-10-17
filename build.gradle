@@ -1,0 +1,47 @@
+plugins {
+    id 'java'
+    id 'net.fabricmc.fabric-loom' version "${loom_version}"
+}
+
+version = project.mod_version
+group = project.maven_group
+
+base {
+    archivesName = project.archives_base_name
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // 26.1.2 is unobfuscated - no "mappings" dependency, and no modImplementation
+    // anywhere (Loom 1.17+ removed the mod* configurations entirely - everything
+    // is a plain implementation/compileOnly dependency now, loader included).
+    minecraft "com.mojang:minecraft:${project.minecraft_version}"
+    implementation "net.fabricmc:fabric-loader:${project.loader_version}"
+    implementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+
+    // Gson ships inside Minecraft already (config, memory, provider JSON).
+    // Internet search uses java.net.http (JDK) — no langchain4j in the client
+    // jar (that library is only what the standalone snippets used).
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_25
+    targetCompatibility = JavaVersion.VERSION_25
+}
+
+processResources {
+    inputs.property "version", project.version
+    filesMatching("fabric.mod.json") {
+        expand "version": project.version
+    }
+}
+
+// 26.1.2 does not remap jars - "jar" is the real, final output.
+jar {
+    from("LICENSE") {
+        rename { "${it}_${project.archivesBaseName}" }
+    }
+}
