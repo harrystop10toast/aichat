@@ -11,12 +11,13 @@ import net.fabricmc.fabric.api.client.command.v2.FabricClientCommandSource;
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;
 
-public class GeminiConfigCommand {
+public class AiConfigCommand {
 
     public static void register() {
         ClientCommandRegistrationCallback.EVENT.register((dispatcher, registryAccess) -> {
             registerConfig(dispatcher, "aiconfig");
             registerConfig(dispatcher, "AIconfig");
+            // Keep the old command available for existing users.
             registerConfig(dispatcher, "geminiconfig");
         });
     }

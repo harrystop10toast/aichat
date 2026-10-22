@@ -81,7 +81,7 @@ public class HypixelApiTool {
         String apiKey = ModConfig.get().hypixelApiKey.trim();
         if (apiKey.isBlank()) {
             return new Result(false, "No Hypixel API key set. Get a free one at https://developer.hypixel.net "
-                    + "(links to your Discord) and set it in /geminiconfig.");
+                    + "(links to your Discord) and set it in /aiconfig.");
         }
 
         try {
@@ -99,7 +99,7 @@ public class HypixelApiTool {
             HttpResponse<String> response = CLIENT.send(request, HttpResponse.BodyHandlers.ofString());
 
             if (response.statusCode() == 403) {
-                return new Result(false, "Hypixel API rejected the API key (HTTP 403) - check it's correct in /geminiconfig.");
+                return new Result(false, "Hypixel API rejected the API key (HTTP 403) - check it's correct in /aiconfig.");
             }
             if (response.statusCode() == 429) {
                 return new Result(false, "Hypixel API rate-limited this key (HTTP 429). Try again shortly.");

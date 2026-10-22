@@ -1,4 +1,4 @@
-package com.geministuff.aichat.gemini;
+package com.geministuff.aichat.ai;
 
 import com.geministuff.aichat.config.ModConfig;
 import com.google.gson.Gson;
@@ -25,9 +25,9 @@ import java.util.concurrent.ConcurrentHashMap;
  *
  * Each (provider, channel) pair supports up to 6 distinct chat sessions (slots 1 to 6).
  * Each session is stored in its own JSON file:
- *   config/geminichat_memory/<provider>_<channel>_chat<id>.json
+ *   config/aichat_memory/<provider>_<channel>_chat<id>.json
  * For example:
- *   2 AIs x 3 server channels x 6 chats = 36 files max.
+ * 2 providers x 4 channels x 6 chats = 48 files max.
  *
  * Memory is doubled from 6 exchanges to 12 exchanges (24 turns max per chat).
  */

@@ -3,7 +3,7 @@ package com.geministuff.aichat.command;
 import com.geministuff.aichat.chat.ChatChannel;
 import com.geministuff.aichat.chat.ChatSender;
 import com.geministuff.aichat.config.ModConfig;
-import com.geministuff.aichat.gemini.ConversationMemory;
+import com.geministuff.aichat.ai.ConversationMemory;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.arguments.StringArgumentType;

@@ -10,7 +10,7 @@ import net.minecraft.network.chat.Component;
 import java.util.List;
 
 /**
- * /geminiconfig. Provider button (Gemini/Groq), API key + model boxes for the
+ * /aiconfig. Provider button (Gemini/Groq), API key + model boxes for the
  * selected provider, a "Recent models" button (click to cycle through models
  * you've used before), and the checkboxes. Nothing persists until Save.
  */

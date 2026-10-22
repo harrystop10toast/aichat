@@ -1,8 +1,8 @@
 package com.geministuff.aichat.chat;
 
 import com.geministuff.aichat.config.ModConfig;
-import com.geministuff.aichat.gemini.ConversationMemory;
-import com.geministuff.aichat.gemini.GeminiService;
+import com.geministuff.aichat.ai.AiService;
+import com.geministuff.aichat.ai.ConversationMemory;
 import net.fabricmc.fabric.api.client.message.v1.ClientReceiveMessageEvents;
 
 import java.util.Map;
@@ -26,7 +26,7 @@ public class ChatListener {
 
     private static final Pattern FORMAT_CODES = Pattern.compile("(?i)[§&][0-9A-FK-OR]");
 
-    private static final ExecutorService GEMINI_POOL = Executors.newCachedThreadPool(r -> {
+    private static final ExecutorService AI_POOL = Executors.newCachedThreadPool(r -> {
         Thread t = new Thread(r, "aichat-worker");
         t.setDaemon(true);
         return t;
@@ -180,8 +180,8 @@ public class ChatListener {
         String username = guessUsername(channel, beforeCommand, line);
 
         CompletableFuture
-                .supplyAsync(() -> GeminiService.generate(channel.key, username, prompt, true), GEMINI_POOL)
-                .exceptionally(ex -> new GeminiService.Result(false,
+                .supplyAsync(() -> AiService.generate(channel.key, username, prompt, true), AI_POOL)
+                .exceptionally(ex -> new AiService.Result(false,
                         "ERROR: unexpected " + ex.getClass().getSimpleName()
                                 + " - check .minecraft/logs/latest.log for details"))
                 .thenAccept(result -> ChatSender.sendDelayed(channel, username, prompt, result));

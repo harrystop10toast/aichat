@@ -1,4 +1,4 @@
-package com.geministuff.aichat.gemini;
+package com.geministuff.aichat.ai;
 
 import com.geministuff.aichat.config.ModConfig;
 import com.geministuff.aichat.tools.HypixelApiTool;
@@ -23,7 +23,7 @@ import java.util.List;
  * for current/web facts via SearXNG. Only ONE tool-call round trip is
  * made per question so latency stays bounded.
  */
-public class GeminiService {
+public class AiService {
 
     private static final HttpClient CLIENT = HttpClient.newBuilder()
             .connectTimeout(Duration.ofSeconds(10))
@@ -275,7 +275,7 @@ public class GeminiService {
                 return new Result(false, "ERROR: " + e.getClass().getSimpleName() + ": " + shorten(e.getMessage()));
             }
         }
-        return new Result(false, "ERROR: Gemini " + lastError + " (after 3 tries) - try switching to Groq in /geminiconfig");
+        return new Result(false, "ERROR: Gemini " + lastError + " (after 3 tries) - try switching to Groq in /aiconfig");
     }
 
     /** Sends the request; returns the parsed 200 body, or throws RetryableHttpException on non-200. */

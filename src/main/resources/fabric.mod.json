@@ -3,7 +3,7 @@
   "id": "aichat",
   "version": "${version}",
   "name": "AIChat",
-  "description": "Personal client-side mod: routes !ai <prompt> in Hypixel guild/party/public chat to Gemini or Groq.",
+  "description": "Client-side AI chat assistant for Minecraft with Gemini and Groq providers.",
   "authors": ["you"],
   "contact": {},
   "license": "MIT",

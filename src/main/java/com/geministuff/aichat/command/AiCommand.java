@@ -1,8 +1,8 @@
 package com.geministuff.aichat.command;
 
 import com.geministuff.aichat.config.ModConfig;
-import com.geministuff.aichat.gemini.ConversationMemory;
-import com.geministuff.aichat.gemini.GeminiService;
+import com.geministuff.aichat.ai.AiService;
+import com.geministuff.aichat.ai.ConversationMemory;
 import com.mojang.brigadier.arguments.StringArgumentType;
 import net.fabricmc.fabric.api.client.command.v2.ClientCommandRegistrationCallback;
 import net.fabricmc.fabric.api.client.command.v2.ClientCommands;
@@ -29,8 +29,8 @@ public class AiCommand {
                                     mc.player.sendSystemMessage(Component.literal("§7[You] " + prompt));
 
                                     CompletableFuture
-                                            .supplyAsync(() -> GeminiService.generate("private", "me", prompt, false))
-                                            .exceptionally(ex -> new GeminiService.Result(false,
+                                            .supplyAsync(() -> AiService.generate("private", "me", prompt, false))
+                                            .exceptionally(ex -> new AiService.Result(false,
                                                     "ERROR: unexpected " + ex.getClass().getSimpleName()
                                                             + " - check .minecraft/logs/latest.log for details"))
                                             .thenAccept(result -> mc.execute(() -> {

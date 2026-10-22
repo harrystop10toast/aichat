@@ -1,8 +1,8 @@
 package com.geministuff.aichat.chat;
 
 import com.geministuff.aichat.config.ModConfig;
-import com.geministuff.aichat.gemini.ConversationMemory;
-import com.geministuff.aichat.gemini.GeminiService;
+import com.geministuff.aichat.ai.AiService;
+import com.geministuff.aichat.ai.ConversationMemory;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientPacketListener;
 import net.minecraft.network.chat.Component;
@@ -24,7 +24,7 @@ public class ChatSender {
         return t;
     });
 
-    public static void sendDelayed(ChatChannel channel, String username, String prompt, GeminiService.Result result) {
+    public static void sendDelayed(ChatChannel channel, String username, String prompt, AiService.Result result) {
         // Random time between 4-6 seconds, extended 1 second -> 4 to 7 seconds (4000 to 7000 ms)
         long delayMs = ThreadLocalRandom.current().nextLong(4000, 7001);
         SCHEDULER.schedule(() -> Minecraft.getInstance().execute(() -> deliver(channel, username, prompt, result)),
@@ -38,7 +38,7 @@ public class ChatSender {
                 delayMs, TimeUnit.MILLISECONDS);
     }
 
-    private static void deliver(ChatChannel channel, String username, String prompt, GeminiService.Result result) {
+    private static void deliver(ChatChannel channel, String username, String prompt, AiService.Result result) {
         if (result.ok()) {
             ConversationMemory.addExchange(channel.key, username, prompt, result.text());
         }
